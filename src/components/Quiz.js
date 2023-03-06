@@ -20,6 +20,14 @@ export default function Quiz(props) {
         props.setCheckedAnswers(true);
     }
 
+    const styles = (answer) => {
+        return {
+            backgroundColor: props.checkedAnswers ? answer.isCorrect ? '#94D7A2' : answer.isSelected ? '#F8BCBC' : 'transparent' : answer.isSelected ? '#D6DBF5' : 'transparent',
+            border: answer.isSelected ? 'none' : props.checkedAnswers ? answer.isCorrect ? 'none' : '' : '',
+            opacity: props.checkedAnswers ? answer.isCorrect ? '1' : '0.5' : '1'
+        }
+    }
+
     return (
         <div className='quiz'>
             {props.quizData.map(question => {
@@ -40,11 +48,12 @@ export default function Quiz(props) {
                                     <label
                                         htmlFor={answer.id}
                                         className='answer'
-                                        style={{
-                                            backgroundColor: props.checkedAnswers ? answer.isCorrect ? '#94D7A2' : answer.isSelected ? '#F8BCBC' : 'transparent' : answer.isSelected ? '#D6DBF5' : 'transparent',
-                                            border: answer.isSelected ? 'none' : props.checkedAnswers ? answer.isCorrect ? 'none' : '' : '',
-                                            opacity: props.checkedAnswers ? answer.isCorrect ? '1' : '0.5' : '1'
-                                        }}
+                                        // style={{
+                                        //     backgroundColor: props.checkedAnswers ? answer.isCorrect ? '#94D7A2' : answer.isSelected ? '#F8BCBC' : 'transparent' : answer.isSelected ? '#D6DBF5' : 'transparent',
+                                        //     border: answer.isSelected ? 'none' : props.checkedAnswers ? answer.isCorrect ? 'none' : '' : '',
+                                        //     opacity: props.checkedAnswers ? answer.isCorrect ? '1' : '0.5' : '1'
+                                        // }}
+                                        style={styles(answer)}
                                     >
                                         {answer.answer}
                                     </label>
